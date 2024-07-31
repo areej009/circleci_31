@@ -5,5 +5,4 @@ workflows:
  build:
    jobs:
      - cypress/run:
-         yarn: true
-         
+        
