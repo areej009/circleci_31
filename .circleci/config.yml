@@ -1,14 +1,23 @@
 version: 2.1
 
 jobs:
-  cypress-test:
+  cypress-run:
     docker:
       - image: cypress/base:14
     steps:
       - checkout
       - run:
           name: Install dependencies
-          command: npm install
+          command: npm ci
+      - run:
+          name: Start your server
+          command: npm start
+          background: true
+      - run:
+          name: Wait for server to be ready
+          command: |
+            # wait up to 60 seconds for server to be ready
+            timeout 60s bash -c 'until curl -sSf http://localhost:3000 > /dev/null; do sleep 1; done'
       - run:
           name: Run Cypress tests
           command: npx cypress run
@@ -17,4 +26,4 @@ workflows:
   version: 2
   test:
     jobs:
-      - cypress-test
+      - cypress-run
