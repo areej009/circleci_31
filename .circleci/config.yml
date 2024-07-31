@@ -8,6 +8,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
+          command: npm install
       - run:
           name: Start your server
           command: npm start
