@@ -4,5 +4,3 @@ describe('template spec', () => {
   })
 })
 
-mkdir -p .circleci
-touch .circleci/config.yml
