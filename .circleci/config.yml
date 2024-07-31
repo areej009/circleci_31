@@ -1,9 +1,40 @@
 version: 2.1
-orbs:
- cypress: cypress-io/cypress@1.2
+
+executors:
+  chrome-executor:
+    docker:
+      - image: cypress/browsers:node18.15.0-chrome91-ff89
+    working_directory: ~/repo
+
+jobs:
+  test:
+    executor: chrome-executor
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - run:
+          name: Start server
+          command: |
+            nohup yarn start &
+            # Wait for the server to be ready
+            sleep 10
+      - run:
+          name: Run Cypress tests
+          command: npx cypress run
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - cypress/screenshots
+            - cypress/videos
+
 workflows:
- build:
-   jobs:
-     - cypress/run:
-         yarn: true
-        
+  version: 2
+  test-and-deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+
