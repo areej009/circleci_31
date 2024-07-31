@@ -7,6 +7,8 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install dependencies
+      - run:
           name: Start your server
           command: npm start
           background: true
