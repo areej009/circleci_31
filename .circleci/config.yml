@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   cypress-test:
     docker:
-      - image: cypress/base:14
+      - image: circleci/node:16-browsers
     steps:
       - checkout
       - run:
