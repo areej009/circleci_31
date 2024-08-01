@@ -21,3 +21,4 @@ workflows:
   test:
     jobs:
       - cypress-test
+          store_artifacts: true
