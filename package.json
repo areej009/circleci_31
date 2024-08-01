@@ -14,6 +14,7 @@
   "description": "",
   "devDependencies": {
     "cypress": "^13.13.1",
+    "cypress-file-upload": "^5.0.8",
     "wait-on": "^7.2.0"
   }
 }
