@@ -10,6 +10,9 @@ jobs:
           name: Install dependencies
           command: npm install
       - run:
+          name: Install Cypress binary
+          command: npx cypress install
+      - run:
           name: Run Cypress tests
           command: npx cypress run
 
