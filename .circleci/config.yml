@@ -4,6 +4,7 @@ jobs:
   cypress-test:
     docker:
       - image: cypress/base:16
+    parallelism: 2
     steps:
       - checkout
       - run:
@@ -14,7 +15,7 @@ jobs:
           command: npx cypress install
       - run:
           name: Run Cypress tests
-          command: npx cypress run
+          command: npx cypress run --record --parallel --key $CYPRESS_RECORD_KEY
 
 workflows:
   version: 2
