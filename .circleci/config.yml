@@ -15,7 +15,7 @@ jobs:
           command: npx cypress install
       - run:
           name: Run Cypress tests
-          command: npx cypress run --record --parallel--key c2e8f514-0f1a-44d1-a426-1c93dda17d81
+          command: npx cypress run --record --key c2e8f514-0f1a-44d1-a426-1c93dda17d81 --parallel 
 
 workflows:
   version: 2
